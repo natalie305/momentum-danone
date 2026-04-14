@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Momentum — For Danone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #09090f;
+    --surface: #0f0f1a;
+    --border: rgba(255,255,255,0.07);
+    --orange: #D85A30;
+    --orange-dim: rgba(216,90,48,0.15);
+    --purple: #7F77DD;
+    --purple-dim: rgba(127,119,221,0.15);
+    --purple-border: rgba(127,119,221,0.3);
+    --white: #ffffff;
+    --muted: rgba(255,255,255,0.45);
+    --hint: rgba(255,255,255,0.25);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .logo-block {}
+  .logo {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 6px;
+    color: var(--white);
+    text-transform: uppercase;
+  }
+  .logo-rule {
+    width: 24px;
+    height: 1.5px;
+    background: var(--orange);
+    margin-top: 6px;
+  }
+
+  .to-block { text-align: right; }
+  .to-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #AFA9EC;
+    letter-spacing: 0.2px;
+  }
+  .to-role {
+    font-size: 11px;
+    color: var(--hint);
+    margin-top: 2px;
+  }
+
+  /* ── HOOK ── */
+  .hook {
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.1s forwards;
+    margin-bottom: 40px;
+  }
+  .hook-line {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(22px, 4vw, 30px);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+  .hook-line em {
+    font-style: italic;
+    color: var(--orange);
+  }
+  .hook-sub {
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 560px;
+  }
+
+  /* ── CARDS GRID ── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1px;
+  }
+
+  .card {
+    background: var(--bg);
+    padding: 28px 24px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
+  }
+  .card:nth-child(1) { animation-delay: 0.15s; }
+  .card:nth-child(2) { animation-delay: 0.22s; }
+  .card:nth-child(3) { animation-delay: 0.29s; }
+  .card:nth-child(4) { animation-delay: 0.36s; }
+
+  .card-num {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--orange);
+    letter-spacing: 2.5px;
+    margin-bottom: 10px;
+  }
+
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .card-body {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+  .card-body strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .for-label {
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--hint);
+    text-transform: uppercase;
+    margin-bottom: 7px;
+  }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 20px;
+  }
+  .pill {
+    font-size: 10px;
+    color: #AFA9EC;
+    background: var(--purple-dim);
+    border: 0.5px solid var(--purple-border);
+    border-radius: 20px;
+    padding: 3px 9px;
+    white-space: nowrap;
+  }
+
+  .ex-label {
+    font-size: 9.5px;
+    letter-spacing: 1.5px;
+    color: var(--hint);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .ex-list { display: flex; flex-direction: column; gap: 0; }
+
+  .ex-link {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 9px 0;
+    border-top: 0.5px solid var(--border);
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 11.5px;
+    line-height: 1.5;
+    transition: color 0.15s;
+  }
+  .ex-link:hover { color: var(--white); }
+  .ex-link:hover .ex-arr { color: var(--orange); }
+
+  .ex-arr {
+    color: rgba(216,90,48,0.6);
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: color 0.15s;
+  }
+  .ex-client {
+    font-weight: 500;
+    color: rgba(255,255,255,0.8);
+  }
+  .ex-partner {
+    font-style: italic;
+    color: var(--hint);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.42s forwards;
+  }
+
+  .contacts {
+    font-size: 11px;
+    color: var(--hint);
+    line-height: 2;
+  }
+  .contacts a {
+    color: var(--purple);
+    text-decoration: none;
+  }
+  .contacts a:hover { text-decoration: underline; }
+
+  .cta {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--hint);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .cards { grid-template-columns: 1fr; }
+    .header { flex-direction: column; }
+    .to-block { text-align: left; }
+    .page { padding: 32px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="logo-block">
+      <div class="logo">Momentum</div>
+      <div class="logo-rule"></div>
+    </div>
+    <div class="to-block">
+      <div class="to-name">Eric Flinn</div>
+      <div class="to-role">VP, Executive Creative Director — Danone</div>
+    </div>
+  </div>
+
+  <div class="hook">
+    <div class="hook-line">Four things we can make happen for<br><em>Oikos, Silk, Evian & SToK</em> — with proof.</div>
+    <div class="hook-sub">Each capability below is matched to where your portfolio is heading in 2026, with a real example you can click.</div>
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="card-num">01</div>
+      <div class="card-title">Stunts that earn media</div>
+      <div class="card-body">Real-world moments designed to <strong>go viral before a dollar of paid media runs.</strong> Hidden-camera activations, street-level surprises, and crowd moments that PR can't buy.</div>
+      <div class="for-label">Best for</div>
+      <div class="pills">
+        <span class="pill">Oikos × Big Ten</span>
+        <span class="pill">SToK street</span>
+      </div>
+      <div class="ex-label">See it in action</div>
+      <div class="ex-list">
+        <a href="https://vimeo.com/783117042/441202d118" target="_blank" class="ex-link">
+          <span class="ex-arr">↗</span>
+          <span><span class="ex-client">Cleo Institute</span> — Flash flood in a Miami gift shop. 60k+ earned impressions. <span class="ex-partner">DVRG // Improv Everywhere</span></span>
+        </a>
+        <a href="https://www.youtube.com/watch?v=gz9BRl7DVSM" target="_blank" class="ex-link">
+          <span class="ex-arr">↗</span>
+          <span><span class="ex-client">OKGO</span> — One-take, 27 robotic arms, Silver Lion at Cannes. <span class="ex-partner">1stAveMachine</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-num">02</div>
+      <div class="card-title">Gen Z content that actually lands</div>
+      <div class="card-body">Youth-made, culturally rooted content — <strong>not brand-speak dressed up as youth culture.</strong> From produced cultural campaigns to raw creator voices, across 20 countries.</div>
+      <div class="for-label">Best for</div>
+      <div class="pills">
+        <span class="pill">Silk plant-based</span>
+        <span class="pill">SToK always-on</span>
+      </div>
+      <div class="ex-label">See it in action</div>
+      <div class="ex-list">
+        <a href="https://www.makinestudios.com/case-study/snoop-dogg" target="_blank" class="ex-link">
+          <span class="ex-arr">↗</span>
+          <span><span class="ex-client">Audible × Snoop Dogg</span> — Launch campaign built on the artist's own visual language. <span class="ex-partner">Makine Studios</span></span>
+        </a>
+        <a href="https://vimeo.com/1090149716" target="_blank" class="ex-link">
+          <span class="ex-arr">↗</span>
+          <span><span class="ex-client">Dove × Ogilvy UK</span> — Real girls worldwide sharing self-confidence stories. Creator voices at scale. <span class="ex-partner">The Masses</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-num">03</div>
+      <div class="card-title">Interactive digital experiences</div>
+      <div class="card-body">Games and immersive digital worlds that hold attention <strong>7+ minutes vs. the 1–2 min industry standard.</strong> Engagement you can actually measure.</div>
+      <div class="for-label">Best for</div>
+      <div class="pills">
+        <span class="pill">Evian premium digital</span>
+        <span class="pill">Oikos Big Ten campus</span>
+      </div>
+      <div class="ex-label">See it in action</div>
+      <div class="ex-list">
+        <a href="https://pitch.com/v/merci-michel_in-short-eg8wzm/55903351-fe41-4ca4-86f4-93654db696a2" target="_blank" class="ex-link">
+          <span class="ex-arr">↗</span>
+          <span><span class="ex-client">Cartier</span> — Zeppelin video game. 7-min avg play time, Cannes-recognized. <span class="ex-partner">Merci Michel</span></span>
+        </a>
+        <a href="https://vimeo.com/1165767151/033caeb39b?share=copy&fl=sv&fe=ci" target="_blank" class="ex-link">
+          <span class="ex-arr">↗</span>
+          <span><span class="ex-client">Joby Aviation × Uber</span> — Super Bowl AR activation inside Uber cars. <span class="ex-partner">The Electric Factory</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-num">04</div>
+      <div class="card-title">Real people, real stories, at scale</div>
+      <div class="card-body">Authentic stories sourced from real consumers — <strong>the kind of content algorithms reward and audiences actually trust.</strong> Shot remotely, delivered fast, on-brand.</div>
+      <div class="for-label">Best for</div>
+      <div class="pills">
+        <span class="pill">Oikos athletes & students</span>
+        <span class="pill">Silk real consumers</span>
+        <span class="pill">SToK social</span>
+      </div>
+      <div class="ex-label">See it in action</div>
+      <div class="ex-list">
+        <a href="https://vimeo.com/1089206378" target="_blank" class="ex-link">
+          <span class="ex-arr">↗</span>
+          <span><span class="ex-client">Motorola</span> — 12 real-user stories sourced globally, shot remotely, 12 polished YouTube spots. <span class="ex-partner">The Masses</span></span>
+        </a>
+        <a href="https://vimeo.com/925188218" target="_blank" class="ex-link">
+          <span class="ex-arr">↗</span>
+          <span><span class="ex-client">Hyundai</span> — Gen Z, Hispanic, bilingual creators posting organically. That's the Silk playbook. <span class="ex-partner">The Masses</span></span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="contacts">
+      Bettina Abascal &nbsp;<a href="mailto:bettina@momentum-reps.com">bettina@momentum-reps.com</a><br>
+      Juanita Lopez &nbsp;<a href="mailto:juanita@momentum-reps.com">juanita@momentum-reps.com</a><br>
+      Natalie Osma &nbsp;<a href="mailto:natalie@momentum-reps.com">natalie@momentum-reps.com</a>
+    </div>
+    <div class="cta">20 minutes. No decks. Just ideas.</div>
+  </div>
+
+</div>
+</body>
+</html>
